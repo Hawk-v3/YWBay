@@ -234,6 +234,11 @@
 	var/list/prone_overlay_offset = list(0, 0) // amount to shift overlays when lying
 	var/job_skill_buffs = list()				// A list containing jobs (/datum/job), with values the extra points that job recieves.
 
+	var/list/descriptors = list(
+		/datum/mob_descriptor/height,
+		/datum/mob_descriptor/build
+	)
+
 /*
 These are all the things that can be adjusted for equipping stuff and
 each one can be in the NORTH, SOUTH, EAST, and WEST direction. Specify
@@ -259,6 +264,13 @@ The slots that you can use are found in items_clothing.dm and are the inventory 
 		hud = new hud_type()
 	else
 		hud = new()
+
+	if(LAZYLEN(descriptors))
+		var/list/descriptor_datums = list()
+		for(var/desctype in descriptors)
+			var/datum/mob_descriptor/descriptor = new desctype
+			descriptor_datums[descriptor.name] = descriptor
+		descriptors = descriptor_datums
 
 	//If the species has eyes, they are the default vision organ
 	if(!vision_organ && has_organ[BP_EYES])
@@ -331,7 +343,7 @@ The slots that you can use are found in items_clothing.dm and are the inventory 
 
 	for(var/obj/item/organ/O in (H.organs|H.internal_organs))
 		O.owner = H
-		post_organ_rejuvenate(O)
+		post_organ_rejuvenate(O, H)
 
 	H.sync_organ_dna()
 
@@ -381,6 +393,7 @@ The slots that you can use are found in items_clothing.dm and are the inventory 
 	H.mob_swap_flags = swap_flags
 	H.mob_push_flags = push_flags
 	H.pass_flags = pass_flags
+	handle_limbs_setup(H)
 
 /datum/species/proc/handle_pre_spawn(var/mob/living/carbon/human/H)
 	return
@@ -514,7 +527,8 @@ The slots that you can use are found in items_clothing.dm and are the inventory 
 
 //Mostly for toasters
 /datum/species/proc/handle_limbs_setup(var/mob/living/carbon/human/H)
-	return FALSE
+	for(var/thing in H.organs)
+		post_organ_rejuvenate(thing, H)
 
 // Impliments different trails for species depending on if they're wearing shoes.
 /datum/species/proc/get_move_trail(var/mob/living/carbon/human/H)
@@ -698,5 +712,5 @@ The slots that you can use are found in items_clothing.dm and are the inventory 
 		if(31 to 45)	. = 4
 		else			. = 8
 
-/datum/species/proc/post_organ_rejuvenate(var/obj/item/organ/org)
+/datum/species/proc/post_organ_rejuvenate(var/obj/item/organ/org, var/mob/living/carbon/human/H)
 	return

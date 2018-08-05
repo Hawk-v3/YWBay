@@ -505,7 +505,6 @@
 "aY" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/circuitboard/crew,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -513,6 +512,7 @@
 	dir = 8;
 	pixel_x = 21
 	},
+/obj/item/weapon/circuitboard/teleporter,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/storage/tech)
 "aZ" = (
@@ -4611,7 +4611,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/camera/network/second_deck{
-	c_tag = "Second Deck - Teleporter"
+	c_tag = "Second Deck - Custodial Closet"
 	},
 /obj/item/device/radio/intercom{
 	dir = 8;
