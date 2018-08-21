@@ -235,9 +235,11 @@
 	var/job_skill_buffs = list()				// A list containing jobs (/datum/job), with values the extra points that job recieves.
 
 	var/list/descriptors = list(
-		/datum/mob_descriptor/height,
-		/datum/mob_descriptor/build
+		/datum/mob_descriptor/height = 0,
+		/datum/mob_descriptor/build = 0
 	)
+
+	var/economic_modifier
 
 /*
 These are all the things that can be adjusted for equipping stuff and
@@ -269,6 +271,7 @@ The slots that you can use are found in items_clothing.dm and are the inventory 
 		var/list/descriptor_datums = list()
 		for(var/desctype in descriptors)
 			var/datum/mob_descriptor/descriptor = new desctype
+			descriptor.comparison_offset = descriptors[desctype]
 			descriptor_datums[descriptor.name] = descriptor
 		descriptors = descriptor_datums
 
@@ -600,6 +603,8 @@ The slots that you can use are found in items_clothing.dm and are the inventory 
 		return 100
 	if(appearance_flags & HAS_SKIN_TONE_SPCR)
 		return 165
+	if(appearance_flags & HAS_SKIN_TONE_TRITON)
+		return 80
 	return 220
 
 /datum/species/proc/get_hair_styles()

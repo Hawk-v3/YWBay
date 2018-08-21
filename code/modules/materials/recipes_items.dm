@@ -9,9 +9,24 @@
 	difficulty = 2
 	send_material_data = 1
 
+/datum/stack_recipe/bell
+	title = "bell"
+	result_type = /obj/item/weapon/material/bell
+	req_amount = 5
+	time = 20
+	send_material_data = 1
+
 /datum/stack_recipe/ashtray
 	title = "ashtray"
 	result_type = /obj/item/weapon/material/ashtray
+	req_amount = 2
+	one_per_turf = 1
+	on_floor = 1
+	send_material_data = 1
+
+/datum/stack_recipe/coin
+	title = "coin"
+	result_type = /obj/item/weapon/material/coin
 	req_amount = 2
 	one_per_turf = 1
 	on_floor = 1

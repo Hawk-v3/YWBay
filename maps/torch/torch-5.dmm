@@ -1808,6 +1808,7 @@
 	name = "HoP Office Privacy Shutters";
 	opacity = 0
 	},
+/obj/item/weapon/material/bell,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/office/xo)
 "eH" = (
@@ -4513,6 +4514,10 @@
 /obj/effect/floor_decal/techfloor/corner{
 	icon_state = "techfloor_corners";
 	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = -32;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/crew_quarters/safe_room/bridge)
@@ -9277,6 +9282,8 @@
 	icon_state = "techfloor_edges";
 	dir = 9
 	},
+/obj/item/weapon/deck/cards,
+/obj/item/modular_computer/laptop/preset/custom_loadout/standard,
 /turf/simulated/floor/tiled/techmaint,
 /area/crew_quarters/safe_room/bridge)
 "tX" = (
